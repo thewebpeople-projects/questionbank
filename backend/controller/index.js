@@ -39,18 +39,14 @@ module.exports=function(app){
     app.use(routeauth(jwt));
 
     app.get('/subject', (req, res) => {
-        if(req.query.subject == '')
-            return res.send([])
-            model.subjects.find({name: {$regex: new RegExp('^'+req.query.search), $options : "-i"}}, (err, subjects) => {
-                res.send(subjects);
-            });
+        model.subjects.find({}, (err, subjects) => {
+            res.send(subjects);
+        });
     });
 
     app.get('/college', (req, res) => {
-        if(req.query.college == '')
-            return res.send([])
-            model.colleges.find({name: {$regex: new RegExp('^'+req.query.search), $options : "-i"}}, (err, colleges) => {
-                res.send(colleges);
-            });
-    });    
+        model.colleges.find({}, (err, colleges) => {
+            res.send(colleges);
+        });
+    });
 }
