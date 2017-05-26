@@ -1,15 +1,48 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import {login} from './actions';
+
 
 class Login extends React.Component{
     constructor(props){
         super(props);
-        this.register=this.register.bind(this);
+        this.state={
+            login_details:{
+                email:'',
+                password:''
+            },
+            token:''
+        }
     }
     componentDidMount() {
         $('.modal').modal();
     }
     register(){
         alert(document.getElementByID('first_name'));
+    }
+    login(){
+        console.log("hi",this);
+        const login_url="http://localhost:8080/login";
+        console.log("Login");
+        console.log(this.state.login_details);
+        fetch(login_url,{
+            method:'post',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(this.state.login_details)
+        })
+            .then(res=>res.json())
+            .then(json=>{
+            console.log(json);
+            if(json.success===true){
+                this.state.token=json.token;
+            }
+        });
+        console.log("token",this.state);
     }
     render(){
         return(
@@ -18,12 +51,28 @@ class Login extends React.Component{
                     <div className="">
                         <div className="input-field col s8">
                             <i className="material-icons prefix">account_circle</i>
-                            <input  id="username" type="text" className="validate"/>
+                            <input  
+                                id="username" 
+                                type="text" 
+                                className="validate" 
+                                onChange={event=>this.setState({login_details:{email:event.target.value,
+                                                                               password:this.state.login_details.password}
+                                                               })
+                                         }
+                                />
                             <label htmlFor="username">User Name</label>
                         </div>
                         <div className="input-field col s8">
                             <i className="material-icons prefix">vpn_key</i>
-                            <input id="password" type="password" className="validate"/>
+                            <input 
+                                id="password" 
+                                type="password" 
+                                className="validate"
+                                onChange={event=>this.setState({login_details:{email:this.state.login_details.email,
+                                                                               password:event.target.value}
+                                                               })
+                                         }
+                                />
                             <label htmlFor="password">Password</label>
                         </div>
                         <div className="center input-field col s6">
@@ -31,7 +80,10 @@ class Login extends React.Component{
                             <label htmlFor="filled-in-box">Remember me</label>
                         </div>
                         <div className="center input-field col s12">
-                            <a className="login-button waves-effect waves-light btn center">Login</a>
+                            <button
+                                className="login-button waves-effect waves-light btn center"
+                                onClick={()=>this.login()}
+                                >Login</button>
                         </div>
                         <div className="row input-field col s12">
                             <div className="col s6 left-align">
@@ -113,7 +165,7 @@ class Login extends React.Component{
                                     </div>
                                 </div>
                                 <div className="row center-align">
-                                    <a className="waves-effect waves-light btn centre-align" onClick={this.register}>Register</a>
+                                    <a className="waves-effect waves-light btn centre-align" onClick={()=>this.register}>Register</a>
                                 </div>
                                 
                             </form>
@@ -123,6 +175,12 @@ class Login extends React.Component{
             </div>
         );
     }
-};
+}
 
-module.exports= Login;
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({login},dispatch);
+}
+
+
+
+export default connect(null,mapDispatchToProps)(Login);

@@ -24,18 +24,18 @@ class Upload extends React.Component{
 //        $('select').material_select();
 //        $(ReactDOM.findDOMNode('select')).material_select();
 //        const ip = ip.address();
-        const sub_url="http://localhost:8080/subject";
-        const college_url="http://localhost:8080/college";
-        console.log("here");
-        fetch(sub_url,{
-            method:'GET'
-        })
-        .then(res=>res.json())
-        .then(json=>{
-            if(json.message==="No token provided."){
-                hashHistory.push('login');
-            }
-        });
+//        const sub_url="http://localhost:8080/subject";
+//        const college_url="http://localhost:8080/college";
+//        console.log("here");
+//        fetch(sub_url,{
+//            method:'GET'
+//        })
+//        .then(res=>res.json())
+//        .then(json=>{
+//            if(json.message==="No token provided."){
+//                hashHistory.push('login');
+//            }
+//        });
         
     }
     verifyCollege(event){
