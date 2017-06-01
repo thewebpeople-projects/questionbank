@@ -36,7 +36,10 @@ var config = {
                 loader: 'babel-loader',
 
                 query: {
-                    presets: ['es2015', 'react','stage-0']
+                    presets: ['es2015', 'react','stage-0'],
+                    "plugins": [
+                        "add-module-exports"
+                    ]
                 }
             },
             {

@@ -1,9 +1,9 @@
 import {LOGIN} from '../constants';
 
-export const login = (text)=>{
+export default function loginAction(text){
     const action={
         type: LOGIN,
-        text
+        text:text
     }
     console.log('action',action);
     return action;

@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import bindActionCreators from 'redux';
+import { withRouter } from 'react-router-dom'
 
-import {login} from './actions';
+import {loginAction} from './actions';
 
 
-class Login extends React.Component{
+class Login extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -178,9 +179,13 @@ class Login extends React.Component{
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({login},dispatch);
+    return bindActionCreators({loginAction},dispatch);
+}
+
+function mapStateToProps(state) {
+    return state
 }
 
 
 
-export default connect(null,mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Login));

@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-var Home = (props) => {
+class Home extends Component {
     return(
         <div>
             <div id="index-banner" className="parallax-container">
@@ -116,4 +116,4 @@ var Home = (props) => {
         );
 }
 
-module.exports = Home;
+export default Home;

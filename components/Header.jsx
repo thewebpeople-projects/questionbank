@@ -1,7 +1,7 @@
-import React from 'react';
-var {Link, IndexLink} = require('react-router');
+import React,{Component} from 'react';
+import Link from 'react-router';
 
-class Header extends React.Component{
+class Header extends Component{
     render(){
         return(
             <div>
@@ -31,4 +31,4 @@ class Header extends React.Component{
     
 }
 
-module.exports= Header;
+export default Header;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-class Home extends React.Component {  
+class Home extends Component {  
     componentDidMount() {
         $('.button-collapse').sideNav();
         $('.parallax').parallax();
@@ -122,4 +122,4 @@ class Home extends React.Component {
     }
 }
 
-module.exports = Home;
+export default Home;

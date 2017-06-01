@@ -1,12 +1,12 @@
-import React from 'react';
-import { findDOMNode, ReactDOM } from 'react-dom';
-import {hashHistory} from 'react-router';
+import React,{Component} from 'react';
+//import { findDOMNode, ReactDOM } from 'react-dom';
+//import {hashHistory} from 'react-router';
 
 $(document).ready(function() {
     $('select').material_select();
 })
 
-class Upload extends React.Component{
+class Upload extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -132,4 +132,4 @@ class Upload extends React.Component{
     }
 }
 
-module.exports= Upload;
+export default Upload;
